@@ -26,7 +26,7 @@ class Email:
     def domain(self):
         matches = Email._match(self)
         if not matches: return None
-        return matches[1]
+        return matches.group(1)
 
     
     def _valid_domain(self):
@@ -41,7 +41,6 @@ class Email:
         return True
 
 
-    @property
     def is_valid(self):
         in_format = Email._match(self)
         if not in_format: return False
