@@ -1,6 +1,6 @@
 version: 2 # use CircleCI 2.0
 jobs: # A basic unit of work in a run
-  setup: # runs not using Workflows must have a `build` job as entry point 
+  build: # runs not using Workflows must have a `build` job as entry point 
     # directory where steps are run
     working_directory: ~/APITesting
     docker: # run the steps with Docker
@@ -15,8 +15,11 @@ jobs: # A basic unit of work in a run
             sudo pip install pipenv
             pipenv install
   test:
-    requires:
-      - setup
+    docker: # run the steps with Docker
+      # CircleCI Python images available at: https://hub.docker.com/r/circleci/python/
+      - image: circleci/python:3.6.4
+        environment: # environment variables for primary container
+          PIPENV_VENV_IN_PROJECT: true
     steps:
       - run:
           command: |
@@ -27,8 +30,12 @@ jobs: # A basic unit of work in a run
           path: tests/tests-results
           destination: tr1
   lint:
-    requires:
-      - setup
+    working_directory: ~/APITesting
+    docker: # run the steps with Docker
+      # CircleCI Python images available at: https://hub.docker.com/r/circleci/python/
+      - image: circleci/python:3.6.4
+        environment: # environment variables for primary container
+          PIPENV_VENV_IN_PROJECT: true
     steps:
       - run:
           command: |
@@ -39,9 +46,22 @@ jobs: # A basic unit of work in a run
           path: test-results
           destination: tr1
   deploy:
-    requires:
-      - build
+    machine: true
     steps:
       - run:
           command: |
             echo "deployed"
+workflows:
+  version: 2
+  build_test_deploy:
+    jobs:
+      - build            
+      - lint : 
+          requires:
+            - build
+      - test :
+          requires:
+            - build
+      - deploy :
+          requires:
+            - test
