@@ -8,14 +8,32 @@ def get_host_name_ip(mail):
         return host_ip
     except:
         print("Unable to get Hostname and IP")
+        return -1
+
+class location_api:
+
+    @staticmethod
+    def get(ip):
+        endpoint = "https://ipapi.co/{}/json/".format(ip)
+        r = requests.get(endpoint).json()
+        try:
+            r = {'country': r['country'], 'city': r['city']}
+        except:
+            print("Cant find country or city")
+            return "Error"
+        return r
+
 
 def get_mail_location(mail):
     ip = get_host_name_ip(mail)
-    endpoint = "https://ipapi.co/{}/json/".format(ip)
-    r = requests.get(endpoint).json()
-    lst = [r['country'], r['city']]
-    print("Country of domian: {}".format(lst[0]))
-    print("City of domain: {}".format(lst[1]))
+    if(ip is -1):
+        return -1
+
+    # API call
+    lst = location_api.get(ip)
+    # print("Country of domian: {}".format(lst['country']))
+    # print("City of domain: {}".format(lst['city']))
     return lst
 
-get_mail_location('weww@walla.co.il')
+mail = 'liorvak303@gmail.com'
+print(get_mail_location(mail))
