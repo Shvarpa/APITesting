@@ -19,11 +19,11 @@ Input: An email address from the user.
 Output: If the email is valid the feature will return true. False otherwise.
 	
 ## How to install:
-'''
+```
 python -m pip install pipenv
 pipenv install
-'''
+```
 #### Tests:
-'''
+```
 pipenv run python -m unittest discover tests
-'''
+```
