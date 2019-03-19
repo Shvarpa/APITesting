@@ -8,6 +8,7 @@ verify_ssl = true
 [packages]
 requests = "*"
 pylint = "*"
+unittest-xml-reporting = "*"
 
 [requires]
 python_version = "3.6"

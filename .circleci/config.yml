@@ -1,6 +1,6 @@
 version: 2 # use CircleCI 2.0
 jobs: # A basic unit of work in a run
-  build: # runs not using Workflows must have a `build` job as entry point 
+  setup: # runs not using Workflows must have a `build` job as entry point 
     # directory where steps are run
     working_directory: ~/APITesting
     docker: # run the steps with Docker
@@ -14,14 +14,34 @@ jobs: # A basic unit of work in a run
           command: |
             sudo pip install pipenv
             pipenv install
+  test:
+    requires:
+      - setup
+    steps:
       - run:
           command: |
-            pipenv run pylint tests/test_*
+            pipenv run python -m xmlrunner discover tests -o tests/tests-results/
+      - store_test_results: # Upload test results for display in Test Summary: https://circleci.com/docs/2.0/collect-test-data/
+          path: tests/tests-results
+      - store_artifacts: # Upload test summary for display in Artifacts: https://circleci.com/docs/2.0/artifacts/
+          path: tests/tests-results
+          destination: tr1
+  lint:
+    requires:
+      - setup
+    steps:
       - run:
           command: |
-            pipenv run python -m unittest discover tests
+            pipenv run pylint ./src/*.py ./tests/*.py
       - store_test_results: # Upload test results for display in Test Summary: https://circleci.com/docs/2.0/collect-test-data/
           path: test-results
       - store_artifacts: # Upload test summary for display in Artifacts: https://circleci.com/docs/2.0/artifacts/
           path: test-results
           destination: tr1
+  deploy:
+    requires:
+      - build
+    steps:
+      - run:
+          command: |
+            echo "deployed"
