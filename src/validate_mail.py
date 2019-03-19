@@ -33,7 +33,6 @@ class Email:
         domain = self.domain
         if not domain: return False
         res = domain_api.get(domain)
-        if not res: return True
         if res['total'] < 1: return False
         found_dom = res['domains'][0]
         if not re.match(found_dom['domain'],domain) : return False

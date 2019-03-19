@@ -7,7 +7,6 @@ def get_host_name_ip(mail):
         host_ip = socket.gethostbyname(domain)
         return host_ip
     except:
-        print("Unable to get Hostname and IP")
         return -1
 
 class location_api:
@@ -19,7 +18,6 @@ class location_api:
         try:
             r = {'country': r['country'], 'city': r['city']}
         except:
-            print("Cant find country or city")
             return "Error"
         return r
 
@@ -34,6 +32,3 @@ def get_mail_location(mail):
     # print("Country of domian: {}".format(lst['country']))
     # print("City of domain: {}".format(lst['city']))
     return lst
-
-mail = 'liorvak303@gmail.com'
-print(get_mail_location(mail))
