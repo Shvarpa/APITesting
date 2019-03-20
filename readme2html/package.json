@@ -4,11 +4,11 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "github-markdown ../readme.md -f markdown >> ../index.html"
+    "start": "generate-md --layout github --input ../readme.md --output ../index"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "markdown-to-html": "0.0.13"
+    "markdown-styles": "^3.1.10"
   }
 }
