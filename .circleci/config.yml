@@ -63,20 +63,18 @@ jobs: # A basic unit of work in a run
             - readme2html-{{ .Branch }}
             - readme2html
       - run:
-          name: Create HTML out of readme.md
+          name: Create HTML out of README.md
           command: |
-            ls -l
             cd readme2html
             npm install
             npm start
-            ls -l
       - save_cache:
           key: readme2html-{{ .Branch }}-{{ checksum "readme2html/package-lock.json" }}
           paths:
             - readme2html/node_modules    
   deploy:
     docker:
-      - image: buildpack-deps:trusty
+      - image: buildpack-deps:php
     steps:
       - checkout
       - run:
