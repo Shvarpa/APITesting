@@ -1,1 +1,1 @@
-<?php header( 'Location: /index/readme.html' ) ;  ?>
+<?php include_once("index/README.html"); ?>
