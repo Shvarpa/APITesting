@@ -65,7 +65,7 @@ jobs: # A basic unit of work in a run
       - run:
           name: Create HTML out of readme.md
           command: |
-            readme2html
+            cd readme2html
             npm install
             npm start
       - save_cache:
