@@ -49,7 +49,6 @@ jobs: # A basic unit of work in a run
       - store_artifacts: # Upload test summary for display in Artifacts: https://circleci.com/docs/2.0/artifacts/
           path: tmp/pylint.out
           destination: pylint.out
-    environment: # environment variables for primary container
   readme:
     working_directory: ~/APITesting
     docker:
@@ -79,17 +78,16 @@ jobs: # A basic unit of work in a run
           command: |
             ls -l
       - persist_to_workspace:
-          root: ~/APITesting
+          root: .
           paths:
             - index
   deploy:
     docker:
       - image: buildpack-deps:trusty
     steps:
-      - checkout
       - attach_workspace:
-          # Must be absolute path or relative path from working_directory
-          at: /index
+        # Must be absolute path or relative path from working_directory
+        at: /index
       - run:
           name: Deploy Master to Heroku
           command: |
