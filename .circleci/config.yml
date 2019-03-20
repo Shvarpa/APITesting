@@ -94,7 +94,7 @@ jobs: # A basic unit of work in a run
             git config user.email "<email>"
             git config user.name "Deployment Bot"
             git pull https://heroku:$HEROKU_API_KEY@git.heroku.com/$HEROKU_APP_NAME.git master
-            git commit --allow-empty -m "readme.md deploy bot"
+            git commit -a --allow-empty -m "readme.md deploy bot"
       - attach_workspace:
         # Must be absolute path or relative path from working_directory
           at: .
