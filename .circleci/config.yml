@@ -76,8 +76,8 @@ jobs: # A basic unit of work in a run
             - readme2html/node_modules
       - run:
           name: check
-          command:
-            - ls -l
+          command: |
+            ls -l
       - persist_to_workspace:
           root: .
           paths:
