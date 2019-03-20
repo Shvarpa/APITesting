@@ -8,6 +8,7 @@
 
 # User-specific stuff
 readme2html/node_modules
+node_modules
 
 .idea
 .idea/**/workspace.xml
@@ -218,3 +219,4 @@ dmypy.json
 .history
 
 # End of https://www.gitignore.io/api/python,pycharm,visualstudiocode
+node_modules
