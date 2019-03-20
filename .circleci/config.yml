@@ -71,11 +71,17 @@ jobs: # A basic unit of work in a run
       - save_cache:
           key: readme2html-{{ .Branch }}-{{ checksum "readme2html/package-lock.json" }}
           paths:
-            - readme2html/node_modules    
+            - readme2html/node_modules
+      - persist_to_workspace:
+          paths:
+            - index
   deploy:
     docker:
       - image: buildpack-deps:trusty
     steps:
+      - attach_workspace:
+          # Must be absolute path or relative path from working_directory
+          at: /index
       - checkout
       - run:
           name: Deploy Master to Heroku
