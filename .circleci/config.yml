@@ -49,6 +49,28 @@ jobs: # A basic unit of work in a run
           path: tmp/pylint.out
           destination: pylint.out
     environment: # environment variables for primary container
+  readme:
+    docker:
+      - image: circleci/node
+    steps:
+      - checkout
+      - run:
+          command: |
+            cd readme2html
+      - restore_cache:
+          keys:
+            - readme2html-{{ .Branch }}-{{ checksum "package-lock.json" }}
+            - readme2html-{{ .Branch }}
+            - readme2html
+      - run:
+          name: Create HTML out of readme.md
+          command: |
+            npm install
+            npm start
+      - save_cache:
+          key: readme2html-{{ .Branch }}-{{ checksum "package-lock.json" }}
+          paths:
+            - vendor/bundle    
   deploy:
     docker:
       - image: buildpack-deps:trusty
@@ -62,10 +84,12 @@ workflows:
   version: 2
   build_and_deploy:
     jobs:
-      - build         
+      - build 
+      - readme        
       - deploy :
           requires:
             - build
+            - readme
           filters:
             branches:
               only: master
