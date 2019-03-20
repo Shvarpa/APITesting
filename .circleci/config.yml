@@ -26,6 +26,7 @@ jobs: # A basic unit of work in a run
             - "/usr/local/bin"
             - "/usr/local/lib/python3.6/site-packages"
   test:
+    working_directory: ~/APITesting
     docker: # run the steps with Docker
       # CircleCI Python images available at: https://hub.docker.com/r/circleci/python/
       - image: circleci/python:3.6.4
@@ -50,6 +51,7 @@ jobs: # A basic unit of work in a run
           destination: pylint.out
     environment: # environment variables for primary container
   readme:
+    working_directory: ~/APITesting
     docker:
       - image: circleci/node
     steps:
@@ -73,6 +75,7 @@ jobs: # A basic unit of work in a run
           paths:
             - readme2html/node_modules
       - persist_to_workspace:
+          root: APITesting
           paths:
             - index
   deploy:
