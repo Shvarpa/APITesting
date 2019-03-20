@@ -67,7 +67,7 @@ jobs: # A basic unit of work in a run
           command: |
             cd readme2html
             npm install
-            npm run server
+            npm start
       - save_cache:
           key: readme2html-{{ .Branch }}-{{ checksum "readme2html/package-lock.json" }}
           paths:
