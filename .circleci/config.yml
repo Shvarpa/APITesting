@@ -82,10 +82,10 @@ jobs: # A basic unit of work in a run
     docker:
       - image: buildpack-deps:trusty
     steps:
+      - checkout
       - attach_workspace:
           # Must be absolute path or relative path from working_directory
           at: /index
-      - checkout
       - run:
           name: Deploy Master to Heroku
           command: |
