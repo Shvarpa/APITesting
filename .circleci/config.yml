@@ -79,7 +79,7 @@ jobs: # A basic unit of work in a run
           command: |
             ls -l
       - persist_to_workspace:
-          root: .
+          root: ~/APITesting
           paths:
             - index
   deploy:
