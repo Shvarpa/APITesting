@@ -74,6 +74,10 @@ jobs: # A basic unit of work in a run
           key: readme2html-{{ .Branch }}-{{ checksum "readme2html/package-lock.json" }}
           paths:
             - readme2html/node_modules
+      - run:
+          name: check
+          command:
+            - ls -l
       - persist_to_workspace:
           root: .
           paths:
@@ -89,6 +93,7 @@ jobs: # A basic unit of work in a run
       - run:
           name: Deploy Master to Heroku
           command: |
+            ls -l
             git config credential.helper 'cache --timeout=120'
             git config user.email "<email>"
             git config user.name "Deployment Bot"
