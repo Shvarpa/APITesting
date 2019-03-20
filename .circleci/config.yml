@@ -90,9 +90,6 @@ jobs: # A basic unit of work in a run
       - run:
           name: setup gui
           command: |
-            git config credential.helper 'cache --timeout=120'
-            git config user.email "<email>"
-            git config user.name "Deployment Bot"
             git pull https://heroku:$HEROKU_API_KEY@git.heroku.com/$HEROKU_APP_NAME.git master
       - attach_workspace:
         # Must be absolute path or relative path from working_directory
