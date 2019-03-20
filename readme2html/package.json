@@ -1,0 +1,14 @@
+{
+  "name": "readme2html",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "github-markdown ../readme.md -f markdown >> ../index.html"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "markdown-to-html": "0.0.13"
+  }
+}
