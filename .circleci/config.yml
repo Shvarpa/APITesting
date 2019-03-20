@@ -89,7 +89,7 @@ jobs: # A basic unit of work in a run
       - checkout
       - attach_workspace:
         # Must be absolute path or relative path from working_directory
-        at: /index
+          at: /index
       - run:
           name: Deploy Master to Heroku
           command: |
