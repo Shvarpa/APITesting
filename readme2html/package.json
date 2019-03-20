@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "generate-md --layout github --input ../readme.md --output ../index"
+    "start": "generate-md --layout github --input ../readme.md --output ../index",
+    "server": "generate-md --layout github --input readme.md --output index"
   },
   "author": "",
   "license": "ISC",
