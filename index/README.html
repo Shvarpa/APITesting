@@ -1,0 +1,33 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimal-ui">
+    <title>Project Management Course - HM 3</title>
+    <link type="text/css" rel="stylesheet" href="assets/css/github-markdown.css">
+    <link type="text/css" rel="stylesheet" href="assets/css/pilcrow.css">
+    <link type="text/css" rel="stylesheet" href="assets/css/hljs-github.min.css"/>
+  </head>
+  <body>
+    <article class="markdown-body"><h1 id="project-management-course---hm-3"><a class="header-link" href="#project-management-course---hm-3"></a>Project Management Course - HM 3</h1>
+<h3 id="presented-by:-lior-vaknin,-pavel-shvarchov,-mordi-dabah"><a class="header-link" href="#presented-by:-lior-vaknin,-pavel-shvarchov,-mordi-dabah"></a>presented by: Lior Vaknin, Pavel Shvarchov, Mordi Dabah</h3>
+<p>In this Project we used two API:
+Link to the API: <a href="https://ipapi.co/developers">https://ipapi.co/developers</a>,
+                 <a href="https://domainsdb.info">https://domainsdb.info</a></p>
+<h2 id="first-feature:"><a class="header-link" href="#first-feature:"></a>First Feature:</h2>
+<p>Find the location of the domain of an email address
+Input: A valid email from the user
+Output: Finds the domain of the email and find it’s IP address (using socket library).
+and then find the location of the ip using the first API.</p>
+<h2 id="second-feature:"><a class="header-link" href="#second-feature:"></a>Second Feature:</h2>
+<p>Check validation of an email address.
+We are using the second API to check if the domain of the email address from the user exist.
+This is one of the criterions for a valid email.
+Input: An email address from the user.
+Output: If the email is valid the feature will return true. False otherwise.</p>
+<h2 id="how-to-install:"><a class="header-link" href="#how-to-install:"></a>How to install:</h2>
+<pre class="hljs"><code>python -m pip <span class="hljs-keyword">install</span> pipenv
+pipenv <span class="hljs-keyword">install</span></code></pre><h4 id="tests:"><a class="header-link" href="#tests:"></a>Tests:</h4>
+<pre class="hljs"><code>pipenv <span class="hljs-keyword">run</span><span class="bash"> python -m unittest discover tests</span></code></pre>    </article>
+  </body>
+</html>
