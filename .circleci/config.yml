@@ -65,9 +65,11 @@ jobs: # A basic unit of work in a run
       - run:
           name: Create HTML out of readme.md
           command: |
+            ls -l
             cd readme2html
             npm install
             npm start
+            ls -l
       - save_cache:
           key: readme2html-{{ .Branch }}-{{ checksum "readme2html/package-lock.json" }}
           paths:
