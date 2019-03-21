@@ -34,9 +34,8 @@ jobs: # A basic unit of work in a run
           PIPENV_VENV_IN_PROJECT: true
     steps:
       - checkout
-      - run: sudo chown -R circleci:circleci /usr/local/bin
-      - run: sudo chown -R circleci:circleci /usr/local/lib/python/site-packages
       - run:
+          name: run tests
           command: |
             pipenv run python -m xmlrunner discover tests -o tests/tests-results/
       - store_test_results: # Upload test results for display in Test Summary: https://circleci.com/docs/2.0/collect-test-data/
@@ -45,6 +44,7 @@ jobs: # A basic unit of work in a run
           path: tests/tests-results
           destination: tr1
       - run:
+          name: run linting config
           command: |
             pipenv run pylint ./src/*.py ./tests/*.py --reports=y . tmp/pylint.out> 
       - store_artifacts: # Upload test summary for display in Artifacts: https://circleci.com/docs/2.0/artifacts/
@@ -116,7 +116,6 @@ workflows:
       - readme        
       - deploy:
           requires:
-            - test
             - readme
           filters:
             branches:
