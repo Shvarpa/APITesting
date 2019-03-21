@@ -27,3 +27,13 @@ pipenv install
 ```
 pipenv run python -m unittest discover tests
 ```
+
+# CICD:
+In this project we set out to manage our workflow with a CI platfrom, we used CircleCI and
+configured a workflow for the building&linting&testing of our project prior to the deployment on a
+cloud storage hosting site, in this case [sce-api-testing@heroku](https://sce-api-testing.herokuapp.com/).
+
+## Conversion of MD markdown to static HTML:
+we used npm's [showdown](https://www.npmjs.com/package/showdown) for the conversion and created
+and configured a script that will deploy the updated readme's static html to heroku in our CI
+platform's workflow.
