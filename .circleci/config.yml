@@ -53,7 +53,7 @@ jobs: # A basic unit of work in a run
       - run:
           name: run linting config
           command: |
-            pipenv run pylint -ry ./src/*.py ./tests/*.py >> tests/pylint.out
+            pipenv run python tests/generate_lint_report.py
       - store_artifacts: # Upload test summary for display in Artifacts: https://circleci.com/docs/2.0/artifacts/
           path: tests/pylint.out
           destination: pylint.out
