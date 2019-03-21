@@ -25,6 +25,10 @@ jobs: # A basic unit of work in a run
             - ".venv"
             - "/usr/local/bin"
             - "/usr/local/lib/python3.6/site-packages"
+      - persist_to_workspace:
+          root: .
+          paths:
+            - .venv
   test:
     working_directory: ~/APITesting
     docker: # run the steps with Docker
@@ -34,6 +38,9 @@ jobs: # A basic unit of work in a run
           PIPENV_VENV_IN_PROJECT: true
     steps:
       - checkout
+      - attach_workspace:
+        # Must be absolute path or relative path from working_directory
+          at: .
       - run:
           name: run tests
           command: |
