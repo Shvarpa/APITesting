@@ -123,6 +123,7 @@ workflows:
       - readme        
       - deploy:
           requires:
+            - test
             - readme
           filters:
             branches:
